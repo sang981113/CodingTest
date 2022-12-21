@@ -2,8 +2,6 @@ import LCM
 
 def test_LCM_gcd():
     assert LCM.gcd(10, 5) == 5
-
-def test_LCM_gcd2():
     assert LCM.gcd(255, 132) == 3
 
 def test_LCM_lcm():
@@ -12,8 +10,6 @@ def test_LCM_lcm():
 class TestSample:
     def test_LCM_gcd():
         assert LCM.gcd(10, 5) == 5
-
-    def test_LCM_gcd2():
         assert LCM.gcd(255, 132) == 3
 
     def test_LCM_lcm():

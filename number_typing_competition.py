@@ -37,7 +37,6 @@ def solution(numbers):
 
     return min(list(all_dict.values()))
 
-import os
 import time
 
 with open("test.txt", "r") as f:

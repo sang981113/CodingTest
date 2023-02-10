@@ -1,15 +1,21 @@
-import heapq
+from heapq import heappush, heappop
 
 def solution(jobs):
-    jobs.sort(key = lambda x: (x[0], x[1]))
     time = 0
-    heap = []
-    for i in range(jobs.size()):
+    delay_sum = 0
+    ready_heap = []
+    sorted_jobs = sorted(jobs, key=lambda x: x[0])
+    
+    while sorted_jobs or ready_heap:
+        while sorted_jobs and sorted_jobs[0][0] <= time:
+            start, duration = sorted_jobs.pop(0)
+            heappush(ready_heap, (duration, start))
+        
+        if ready_heap:
+            duration, start = heappop(ready_heap)
+            delay_sum += time - start + duration
+            time += duration
+        else:
+            time = sorted_jobs[0][0]
 
-        heapq.heappush(heap, jobs.pop(0))
-    return
-
-jobs = [[4, 3], [0, 3], [0, 1], [1, 9], [1, 2], [2, 6]]
-heapq.heapify(jobs)
-while jobs:
-    print(heapq.heappop(jobs, 0))
+    return int(delay_sum/len(jobs))
